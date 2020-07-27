@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- th를 써주고 싶다면 xmlns:th="http://www.w3.org/1999/xhtml" 이걸로 import를 해줘야 함.-->
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Main Page</title>
@@ -7,9 +8,70 @@
 <body>
     <h1>Main Page</h1>
 
+    <!-- 해당 버튼을 누르면 /doRequestPythonRest로 요청을 넣음
+        localhost:8080/doRequestPythonRest -->
     <form th:action="@{/doRequestPythonRest}">
         <input type="submit"
                value="파이썬에 데이터 요청하기"/>
+
+    <!-- 파이썬에 데이터 요청하기 밑에 오늘 날짜와 시간 나타내-->
+    </form>
+    <!-- Model에 있는 servTime을 식별함!
+        Server Time: ${servTime}으로 실제 값을 뽑아온다. -->
+    <p th:text="${servTime}">Server Time: ${servTimes}</p>
+    <!-- th:text => 우리가 전달한 모델 정보 중에 text 정보로 쓸게 있냐라고 보는 것
+                    text 정보이려면 String이어야 함.
+                    MainController에서 servTime을 이용해서 여기서 text는 servTime이 온다는 의미.
+         그러면, th(싸임리프?)가 모델에 있는
+    -->
+    <!-- 파이썬 URL로 입력 요청 들어감.-->
+    <form action="http://localhost:5000/imgServer"
+          method="POST" enctype="multipart/form-data">
+
+        <!-- 파일 전송이 조금 어정쩡하게 넘어가고 있어서 확인해보기-->
+        <!-- 로그인, 회원가입, 딥러닝 서비스 등을 이렇게 해서 만들어볼 수 있음-->
+        <input type="file" name="file"/>
+        <input type="submit"/>
+    </form>
+
+    <form action="http://localhost:8080/musics">
+        <input type="submit" value="Music Page">
+    </form>
+
+    <form action="http://localhost:8080/regtestpage">
+        <input type="submit" value="Register Test Page">
+    </form>
+
+    <!-- th:action Thymeleaf라는 녀석에서 행동에 대한 처리
+         우리가 버튼을 눌렀을 때 어디로 링크시킬지를 결정한다.
+         @가 붙어있으면 중괄호가 쳐진 URL로 링크시킨다.
+         method 지정을 하지 않으면 디폴트로 GET으로 날아감.
+
+         GET 방식은 ?가 붙어서 URL 만들어짐
+         POST 방식은 json 방식을 사용 (?가 붙지 않고 URL 만들어짐) -->
+    <form th:action="@{/html/register}">
+        <input type="submit" value="register(GET)">
+    </form>
+
+    <form th:action="@{/html/register}" method="post">
+        <input type="submit" value="register(POST)">
+    </form>
+
+    <form th:action="@{/html/modify}">
+        <input type="submit" value="modify(GET)">
+    </form>
+
+    <form th:action="@{/html/modify}" method="post">
+        <input type="submit" value="modify(POST)">
+    </form>
+
+    <form th:action="@{/html/delete}" method="post">
+        <input type="submit" value="delete(POST)">
+    </form>
+
+    <form th:action="@{/html/delete}" method="post">
+        <input type="submit" value="delete(POST)">
+    </form>
 
 
 </body>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Board List</title>
+</head>
+<body>
+    <h2>Board List</h2>
+    <!--board/register.html로 링크를 거는 것.-->
+    <a href="board/register.html" th:href="@{getRegister}">
+        Write New Contents
+    </a>
+    <!--테두리 굵기 = 1-->
+    <table border="1">
+        <!--따라서 총 4이 나올 것.-->
+        <tr>
+            <!-- 실제 DB에서 읽어온 정보를 토대로 구성-->
+            <th align="center" width="80">No</th>
+            <th align="center" width="80">Title</th>
+            <th align="center" width="80">Writer</th>
+            <th align="center" width="80">Regdate</th>
+        </tr>
+        <!--list는 DB에서 읽어온 정보들.-->
+        <tr th:if="${#lists.isEmpty(list)}">
+            <!--비어있다면 열 4칸을 병합해서 다음 문장을 입력하라는 의미.-->
+            <td colspan="4">
+                List is Empty
+            </td>
+        </tr>
+
+        <!--foreach for(A : B) 와 같은 것-->
+        <!-- BoardController의 ${list}를 가져온 것-->
+        <tr th:each="board: ${list}">
+            <!--board 정보에 대해 지정해줘야 함.-->
+            <!--center : 가운데 정렬하겠다.-->
+            <td align="center" th:text="${board.boardNo}">
+                ${board.boardNo}
+            </td>
+            <!--<a href="board/read.html" ==> 하이퍼링크 태우는 것.
+                 th:href="@{|read?boardNo=${board.boardNo}|"
+                 ===> 몇번 board에 해당하는 정보를 읽을 것인지 알려주는 것.
+
+                 이렇게만 작성해주면 에러가 날 것임.-> 그 이유는 controller가 없기 때문!
+                 MVC 패턴에서 URL controller하는 역할인 controller를 만들어줘야 함.
+                 controller에 "/read" ?boardNo=7를 get형태로 받아오는 것을 만들어줘야 함.-->
+            <td align="left">
+                <a href="board/read.html"
+                   th:href="@{|read?boardNo=${board.boardNo}|}"
+                   th:text="${board.title}">
+                    ${board.title}
+                </a>
+            </td>
+            <td align="right" th:text="${board.writer}">
+                ${board.writer}
+            </td>
+            <td align="center"
+                th:text="${#dates.format(board.regDate, 'yyyy-MM-dd HH:mm:ss')}">
+                ${board.regDate}
+            </td>
+        </tr>
+
+    </table>
+</body>
+</html>
