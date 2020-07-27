@@ -10,13 +10,11 @@
 <script>
     $(document).ready(function() {
         var formObj = $("#board");
-
         $("#btnModify").on("click", function() {
             formObj.attr("action", "postModify");
             formObj.attr("method", "post");
             formObj.submit();
         });
-
         $("#btnList").on("click", function() {
             self.location = "list";
         });
@@ -24,10 +22,10 @@
 </script>
 <body>
 <h2>Modify</h2>
-
 <form id="board" action="board/success.html"
       th:action="@{modify}"
       th:object="${board}" method="post">
+    <!--우리가 입력한 정보를 DB에 넣는 작업-->
     <input type="hidden" name="boardNo" th:field="*{boardNo}"/>
     <table>
         <tr>
@@ -47,26 +45,27 @@
             <td><input type="text" name="writer"
                        th:field="*{writer}"/></td>
             <td><font color="red">
-                    <span th:if="${#fields.hasErrors('writer')}"
-                          th:errors="*{writer}">
-                        writer Error Message
+                <!-- 앞서 얻은 field에 title에 에러가 있다면 -->
+                <span th:if="${#fields.hasErrors('writer')}"
+                      th:errors="*{writer}">
+                        Writer Error Message
                     </span>
             </font></td>
         </tr>
         <tr>
             <td>Content</td>
             <td><textarea name="content"
-                          th:field="*{content}"></textarea></td>
+                          th:field="*{content}"/></td>
             <td><font color="red">
-                    <span th:if="${#fields.hasErrors('content')}"
-                          th:errors="*{content}">
-                        content Error Message
+                <!-- 앞서 얻은 field에 title에 에러가 있다면 -->
+                <span th:if="${#fields.hasErrors('content')}"
+                      th:errors="*{content}">
+                        Writer Error Message
                     </span>
             </font></td>
         </tr>
     </table>
 </form>
-
 <div>
     <button type="submit" id="btnModify">Modify</button>
     <button type="submit" id="btnList">List</button>
