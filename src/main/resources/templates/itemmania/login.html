@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Item Mania</title>
+</head>
+<script type="text/javascript" src="http://cod.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+        $('#btnLogin').click(function() {
+            location.href = '/list?';
+        });
+
+        $('#btnLogin').click(function() {
+            location.href = 'signup?';
+        });
+    });
+</script>
+<body>
+    <h2>Item Mania</h2>
+    <form id="loginform">
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>
+                    <input type="text" name="id"/>
+                </td>
+            </tr>
+            <tr>
+                <td>PW</td>
+                <td>
+                    <input type="password" name="pw"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+<br>
+    <div>
+        <button id="btnLogin">로그인</button>
+        <button id="btnRegister">회원가입</button>
+    </div>
+</body>
+</html>

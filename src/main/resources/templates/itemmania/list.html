@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Item Mania List</title>
+</head>
+<body>
+    <h2>Item Mania List</h2>
+    <a href="itemmania/register.html" th:href="@{getItemManiaRegister}">Write New Contents</a>
+
+    <table border="1">
+        <tr>
+            <th align="center" width="80">No</th>
+            <th align="center" width="80">ID</th>
+            <th align="center" width="80">PW</th>
+            <th align="center" width="80">Nick Name</th>
+            <th align="center" width="80">Item</th>
+            <th align="center" width="80">Price</th>
+        </tr>
+        <tr th:if="${#lists.isEmpty(itemlist)}")>
+            <td colspan="6">
+                List is Empty
+            </td>
+        </tr>
+
+        <tr th:each="itemmania: ${itemlist}">
+            <td align="center" th:text="${itemmania.itemmaniaNo}">
+                ${itemmania.itemmaniaNo}
+            </td>
+            <td align="center">
+                <a href="itemmania/read.html"
+                   th:href="@{|read?itemmaniaNo=${itemmania.itemmaniaNo}|}"
+                   th:text="${itemmania.id}">
+                ${itemmania.id}
+                </a>
+            </td>
+            <td align="center" th:text="${itemmania.pw}">
+                ${itemmania.pw}
+            </td>
+            <td align="center" th:text="${itemmania.nickname}">
+                ${itemmania.nickname}
+            </td>
+            <td align="center" th:text="${itemmania.item}">
+                ${itemmania.item}
+            </td>
+            <td align="center" th:text="${itemmania.price}">
+                ${itemmania.price}
+            </td>
+        </tr>
+
+    </table>
+</body>
+</html>
