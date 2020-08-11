@@ -6,6 +6,12 @@ import Test from '../views/Test.vue'
 import Todo from '../views/Todo.vue'
 import Concave from '../views/Concave.vue'
 
+// For Cafe Board
+import BoardListPage from '../views/BoardListPage.vue'
+import BoardRegisterPage from '../views/BoardRegisterPage.vue'
+import BoardReadPage from '../views/BoardReadPage.vue'
+import BoardModifyPage from '../views/BoardModifyPage.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -39,6 +45,35 @@ const routes = [
     name: 'Concave',
     components: {
       default: Concave
+    }
+  },
+  // compnents는 여러개 왔다갔다 할때 사용 가능 default도 써줘야 함.
+  {
+    path: '/board',
+    name: 'BoardListPage',
+    components: {
+      default: BoardListPage
+    }
+  },
+  {
+    path: '/board/create',
+    name: 'BoardRegisterPage',
+    components: {
+      default: BoardRegisterPage
+    }
+  },
+  {
+    path: '/board/boardNo',
+    name: 'BoardReadPage',
+    components: {
+      default: BoardReadPage
+    }
+  },
+  {
+    path: '/board/boardNo/edit',
+    name: 'BoardModifyPage',
+    components: {
+      default: BoardModifyPage
     }
   }
 ]
