@@ -6,13 +6,33 @@ import {
   CLEAR_ALL,
   RESTORE,
   EDIT_TODO,
-  TOGGLE_TODO_STATUS
+  TOGGLE_TODO_STATUS,
+  FETCH_BOARD_LIST,
+  FETCH_BOARD
 } from './mutation-types'
 // mutation-tyes에서 사용하겠다고 설명.
 
 import axios from 'axios'
 
 export default {
+  fetchBoardList ({ commit }) {
+    // VueBoardController에서 RequestMapping("boards")로 연결되는 것
+    return axios.get('http://localhost:7777/boards')
+      .then(res => {
+        // list를 뽑아서 동작하게 해줌.
+        commit(FETCH_BOARD_LIST, res.data)
+      })
+  },
+  fetchBoard ({ commit }, boardNo) {
+    // fetchBoard가 동작함을 알려줌.
+    console.log('fetchBoard ' + commit + ', boardNo = ' + boardNo)
+    return axios.get(`http://localhost:7777/boards/${boardNo}`)
+      .then(res => {
+        console.log('fetchBoard - res: ' + res.data)
+        // FETCH_BOARD만 fetch해 올 수 있도록 함
+        commit(FETCH_BOARD, res.data)
+      })
+  },
   editTodo ({ commit }, payload) {
     commit(EDIT_TODO, payload)
   },
@@ -50,6 +70,7 @@ export default {
   },
   // distpatch하도록 하는 것.
   addTodo (context, payload) {
+    // payload 이름 지정은 상관 없음.
     context.commit(ADD_TODO, payload)
   },
   removeTodo (context, payload) {
@@ -59,29 +80,3 @@ export default {
     context.commit(CLEAR_ALL)
   }
 }
-//  actions: {
-//    generateRandomNumber ({ commit }) {
-//      console.log(commit)
-//
-//      axios.get('http://localhost:7777/random')
-//        .then((res) => {
-//          commit('successGenRandNum',
-//            parseInt(res.data.randNumber))
-//        })
-//        .catch((res) => {
-//          commit('failGenRandNum', res)
-//        })
-//    },
-//    // distpatch하도록 하는 것.
-//    addTodo (context, payload) {
-//      context.commit('ADD_TODO', payload)
-//    },
-//    removeTodo (context, payload) {
-//      context.commit('REMOVE_TODO', payload)
-//    },
-//    clearAll (context, payload) {
-//      context.commit('CLEAR_ALL')
-//    }
-//  },
-//  modules: {
-//  }

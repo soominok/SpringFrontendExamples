@@ -5,5 +5,11 @@ export default {
   todoItems: [],
   editingId: 0,
   nextTodoId: 1,
-  filer: null
+  filter: null,
+  // Vue Board
+  // boards는 배열 형태로
+  // Spring에서 연결받은 boards??
+  boards: [],
+  // board는 객체 형태로 ???
+  board: null
 }

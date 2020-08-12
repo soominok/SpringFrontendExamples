@@ -9,7 +9,9 @@ import {
   SET_EDITING_ID,
   RESET_EDITING_ID,
   TOGGLE_TODO_STATUS,
-  SET_FILTER
+  SET_FILTER,
+  FETCH_BOARD_LIST,
+  FETCH_BOARD
 } from './mutation-types'
 
 // 위에서 땡겨오는 애들은 []로 해줘야 함.
@@ -75,5 +77,12 @@ export default {
   },
   [SET_FILTER] (state, filter) {
     state.filter = filter
+  },
+  [FETCH_BOARD_LIST] (state, boards) {
+    // state.boards에 넘어온 내용을 확인하면 되는 것.
+    state.boards = boards
+  },
+  [FETCH_BOARD] (state, board) {
+    state.board = board
   }
 }
