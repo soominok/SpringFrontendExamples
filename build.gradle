@@ -51,13 +51,31 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.boot:spring-boot-starter-jdbc'
+	compile 'org.springframework.boot:spring-boot-starter-security'
+	compile 'org.springframework.boot:spring-boot-starter-aop'
+	// 로그인 만들 때 쓸게 너무 많기 때문에 추가해서 사용해주기!
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compile 'io.jsonwebtoken:jjwt-api:0.10.7'
+	compile 'io.jsonwebtoken:jjwt-impl:0.10.7'
+	// jwt는
+	// jsonweb 시그니처임 - 웹 보안도 같이 하는 것.
+	// 사용자가 아이디, 패스워드를 하면 spring controller에 요청을 날리게 되고 controller - service - repository로 날림.
+	// 사용자에게 jwt 토큰을 기반으로 서비스를 이용하는 것.
+	// 결국 로그인을 조금 더 멋들어지게 하는 역할
+	compile 'io.jsonwebtoken:jjwt-jackson:0.10.7'
 	compileOnly 'org.projectlombok:lombok'
+	compile 'org.hibernate:hibernate-core:5.4.17.Final'
+	compile 'org.springframework:spring-orm'
+	// 하이퍼네이트가 사용하는 DB 헤드를 링크
+	compile 'com.h2database:h2'
+	compile 'org.hibernate.validator:hibernate-validator:6.0.7.Final'
 
 	// 얘가 자꾸 올라가려고 하니까 충돌나서 에러 발생.
 	// developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
+	// request 요청 있을 수 있으니까 넣어 놓기.
 	compile group: 'commons-io', name: 'commons-io', version: '2.7'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
