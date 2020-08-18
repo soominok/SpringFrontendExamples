@@ -15,7 +15,9 @@ import {
   SET_ACCESS_TOKEN,
   SET_MY_INFO,
   DESTROY_ACCESS_TOKEN,
-  DESTROY_MY_INFO
+  DESTROY_MY_INFO,
+  CRAWLSTART,
+  FINDONE
 } from './mutation-types'
 
 // vuex 객체여서 정보 공유를 안해서 cookies를 넣어줘야 함.
@@ -24,6 +26,12 @@ import cookies from 'vue-cookies'
 
 // 위에서 땡겨오는 애들은 []로 해줘야 함.
 export default {
+  [CRAWLSTART] (state, payload) {
+    state.lists = payload
+  },
+  [FINDONE] (state, payload) {
+    state.news = payload
+  },
   [ADD_TODO] (state, payload) {
     const { content } = payload
     state.todoItems.push({ id: state.nextTodoId, content, done: false })

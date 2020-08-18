@@ -13,14 +13,37 @@ import {
   SET_MY_INFO,
   /* eslint-disable no-unused-vars */
   DESTROY_ACCESS_TOKEN,
-  DESTROY_MY_INFO
+  DESTROY_MY_INFO,
+  /* Crawl */
+  FINDONE,
+  FINDHOME,
+  CRAWLSTART
 } from './mutation-types'
 // mutation-tyes에서 사용하겠다고 설명.
 // 여기서 mutation들을 호출하는 것.
 
 import axios from 'axios'
+import router from '../router'
 
 export default {
+  // 양이 많아서 async(비동기 처리) 해줘야 함.
+  async crawlFind ({ commit }, category) {
+    axios.get('http://localhost:7777/' + `${category}`)
+      .then(({ data }) => {
+        commit('CRAWLSTART', data)
+        if (window.location.pathname !== '/CrawlCategory') {
+          router.push('/CrawlCategory')
+        }
+      })
+  },
+  async crawlFindOne ({ commit }, newsNo) {
+    axios.get('http://localhost:7777/news/' + `${newsNo}`)
+      .then(({ data }) => {
+        console.log('/news/newsNo res: ' + data)
+        commit('FINDONE', data)
+        router.push('/CrawlCategory/news')
+      })
+  },
   fetchBoardList ({ commit }) {
     // VueBoardController에서 RequestMapping("boards")로 연결되는 것
     return axios.get('http://localhost:7777/boards')

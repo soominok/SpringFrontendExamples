@@ -113,7 +113,8 @@ export default {
 <style>
   body {
     text-align: center;
-    background-color: #C8D7FF;
+    background-color: #B0C4DE;
   }
 </style>
 //#FFFACD
+//#C8D7FF

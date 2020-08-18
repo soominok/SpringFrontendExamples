@@ -23,3 +23,10 @@ export const SET_MY_INFO = 'SET_MY_INFO'
 // 액세스 토큰, MyInfo를 파괴하는 것!
 export const DESTROY_ACCESS_TOKEN = 'DESTROY_ACCESS_TOKEN'
 export const DESTROY_MY_INFO = 'DESTROY_MY_INFO'
+
+// For Crawling
+export const CRAWL_LISTS = 'CRAWL_LISTS'
+export const CRAWLSTART = 'CRAWLSTART'
+export const FINDONE = 'FINDONE'
+export const FINDHOME = 'FINDHOME'
+export const BOOLEAN = 'BOOLEAN'

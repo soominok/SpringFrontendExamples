@@ -14,5 +14,11 @@ export default {
   board: null,
   // For Login
   accessToken: '',
-  myinfo: null
+  myinfo: null,
+  // Crawling
+  lists: [],
+  news: [],
+  homeNews: [],
+  savedNews: [],
+  savedNewsContents: []
 }

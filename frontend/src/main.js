@@ -3,11 +3,14 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import cookies from 'vue-cookies'
+import vuex from 'vuex'
 import vuetify from './plugins/vuetify'
 
 Vue.config.productionTip = false
 
 Vue.use(cookies)
+// 여차하면 vuex로 직접 접근해야할 수 있으니까 추가하기.
+Vue.use(vuex)
 
 function init () {
   const savedToken = null

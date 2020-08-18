@@ -69,6 +69,8 @@ dependencies {
 	// 하이퍼네이트가 사용하는 DB 헤드를 링크
 	compile 'com.h2database:h2'
 	compile 'org.hibernate.validator:hibernate-validator:6.0.7.Final'
+	// Crawling하려면 jsoup이 필요함.
+	compile 'org.jsoup:jsoup:1.13.1'
 
 	// 얘가 자꾸 올라가려고 하니까 충돌나서 에러 발생.
 	// developmentOnly 'org.springframework.boot:spring-boot-devtools'
