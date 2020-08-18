@@ -25,5 +25,10 @@ export default {
   },
   random (state) {
     return state.random
+  },
+  isAuthorized (state) {
+    // 액세스 토큰이 없고,
+    // 이중부정 -> myinfo가 참/거짓으로 나오게 하기 위해서 이중부정 사용.
+    return state.accessToken.length > 0 && !!state.myinfo
   }
 }

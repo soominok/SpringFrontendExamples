@@ -11,5 +11,8 @@ export default {
   // Spring에서 연결받은 boards??
   boards: [],
   // board는 객체 형태로 ???
-  board: null
+  board: null,
+  // For Login
+  accessToken: '',
+  myinfo: null
 }

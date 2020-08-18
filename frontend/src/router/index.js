@@ -12,6 +12,13 @@ import BoardRegisterPage from '../views/BoardRegisterPage.vue'
 import BoardReadPage from '../views/BoardReadPage.vue'
 import BoardModifyPage from '../views/BoardModifyPage.vue'
 
+// For Login System
+import LoginPage from '../views/LoginPage.vue'
+import AdminSetupPage from '../views/AdminSetupPage.vue'
+
+// Vuetify
+import VuetifyBoard from '../views/VuetifyBoard.vue'
+import VuetifyBoardListPage from '../views/VuetifyBoardListPage.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -81,6 +88,34 @@ const routes = [
     // boolean 모드 -> 이 옵션을 설정하면 route.params가 컴포넌트의 props에 자동 설정됨 (넘어갈 때 항상 참값이 자동으로 생성되는 것).
     props: {
       default: true
+    }
+  },
+  {
+    path: '/LoginPage',
+    name: 'LoginPage',
+    components: {
+      default: LoginPage
+    }
+  },
+  {
+    path: '/AdminSetupPage',
+    name: 'AdminSetupPage',
+    components: {
+      default: AdminSetupPage
+    }
+  },
+  {
+    path: '/VuetifyBoard',
+    name: 'VuetifyBoard',
+    components: {
+      default: VuetifyBoard
+    }
+  },
+  {
+    path: '/VuetifyBoardListPage',
+    name: 'VuetifyBoardListPage',
+    components: {
+      default: VuetifyBoardListPage
     }
   }
 ]

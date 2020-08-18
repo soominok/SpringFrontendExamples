@@ -9,8 +9,11 @@
       Edit
     </router-link>
     <button @click="onDelete">Delete</button>
-    <!-- List 쪽으로 되돌아가기 -->
+    <!-- List 쪽으로 되돌아가기
     <router-link :to="{ name: 'BoardListPage' }">
+      List
+    </router-link> -->
+    <router-link :to="{ name: 'VuetifyBoardListPage' }">
       List
     </router-link>
   </div>

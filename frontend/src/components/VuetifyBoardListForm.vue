@@ -1,17 +1,34 @@
 <template>
-  <div id="board">
-    <h2>Board List</h2>
-    <!-- 내용 추가하는 것이 필요함.
-         내용 등록이 필요하기 때문에 BoardRegisterPage로 써줌-->
-    <router-link :to="{ name: 'BoardRegisterPage' }">
-      Create New Board
-    </router-link>
-    <!-- board list가 보여야 하기 때문에 -->
-    <!-- 질문~!!! :boards="boards"??? Spring 연결?? DB 연동하기 위해서?? -->
-    <board-list :boards="boards"/>
+  <div>
+    <table>
+      <tr>
+        <th>No</th>
+        <th>Tel</th>
+        <th>Address</th>
+        <th>Name</th>
+      </tr>
+      <tr v-for="page in paginatedData" :key="page.no">
+        <td>{{ page.no }}</td>
+        <td>{{ page.tel }}</td>
+        <td>{{ page.address }}</td>
+        <td>{{ page.name }}</td>
+      </tr>
+    </table>
+    <div class="btn-cover">
+      <button :disabled="pageNum === 0"
+        @click="prevPage" class="page-btn">
+        이전
+      </button>
+      <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
+      <button :disabled="pageNum >= pageCount - 1"
+        @click="nextPage" class="page-btn">
+        다음
+      </button>
+    </div>
   </div>
 </template>
 
+// 객체
 <script>
 export default {
   name: 'VuetifyBoardListForm',

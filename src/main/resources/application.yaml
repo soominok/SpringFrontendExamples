@@ -7,3 +7,32 @@ spring:
     username: bitai
     password: 456123
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # Jpa 설정을 해줘야 함. (이렇게 한 묶음.)
+  jpa:
+    open-in-view: false
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  # 데이터를 제이슨 파싱할 때 많이 쓰는 것.
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+# 디버깅하기 위해서 최소한 들어가야 하는 옵션
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+
+    app:
+      sample:
+        message:
+          AuditingFilter: DEBUG
+          SecurityChecker: DEBUG
+          MessageService: DEBUG

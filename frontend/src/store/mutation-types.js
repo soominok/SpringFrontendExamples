@@ -15,3 +15,11 @@ export const SET_FILTER = 'SET_FILTER'
 
 export const FETCH_BOARD_LIST = 'FETCH_BOARD_LIST'
 export const FETCH_BOARD = 'FETCH_BOARD'
+
+// For Login & Logout
+// 액세스 토큰, MyInfo 얻어오고
+export const SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN'
+export const SET_MY_INFO = 'SET_MY_INFO'
+// 액세스 토큰, MyInfo를 파괴하는 것!
+export const DESTROY_ACCESS_TOKEN = 'DESTROY_ACCESS_TOKEN'
+export const DESTROY_MY_INFO = 'DESTROY_MY_INFO'

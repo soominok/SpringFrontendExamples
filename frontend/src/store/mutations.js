@@ -11,8 +11,16 @@ import {
   TOGGLE_TODO_STATUS,
   SET_FILTER,
   FETCH_BOARD_LIST,
-  FETCH_BOARD
+  FETCH_BOARD,
+  SET_ACCESS_TOKEN,
+  SET_MY_INFO,
+  DESTROY_ACCESS_TOKEN,
+  DESTROY_MY_INFO
 } from './mutation-types'
+
+// vuex 객체여서 정보 공유를 안해서 cookies를 넣어줘야 함.
+import axios from 'axios'
+import cookies from 'vue-cookies'
 
 // 위에서 땡겨오는 애들은 []로 해줘야 함.
 export default {
@@ -84,5 +92,29 @@ export default {
   },
   [FETCH_BOARD] (state, board) {
     state.board = board
+  },
+  [SET_ACCESS_TOKEN] (state, accessToken) {
+  // 액세스 토큰이 있다면,
+    if (accessToken) {
+      state.accessToken = accessToken
+      // 여기서 header를 전송함.
+      axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`
+      console.log('axios Auth: ' + axios.defaults.headers.common.Authorization)
+
+      cookies.set('accessToken', accessToken, '1h')
+    }
+  },
+  [SET_MY_INFO] (state, myinfo) {
+    if (myinfo) {
+      state.myinfo = myinfo
+    }
+  },
+  [DESTROY_ACCESS_TOKEN] (state) {
+    state.accessToken = ''
+    delete axios.defaults.headers.common.Authorization
+    cookies.remove('accessToken')
+  },
+  [DESTROY_MY_INFO] (state) {
+    state.myinfo = null
   }
 }

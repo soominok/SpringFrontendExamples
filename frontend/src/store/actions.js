@@ -8,9 +8,15 @@ import {
   EDIT_TODO,
   TOGGLE_TODO_STATUS,
   FETCH_BOARD_LIST,
-  FETCH_BOARD
+  FETCH_BOARD,
+  SET_ACCESS_TOKEN,
+  SET_MY_INFO,
+  /* eslint-disable no-unused-vars */
+  DESTROY_ACCESS_TOKEN,
+  DESTROY_MY_INFO
 } from './mutation-types'
 // mutation-tyes에서 사용하겠다고 설명.
+// 여기서 mutation들을 호출하는 것.
 
 import axios from 'axios'
 
@@ -78,5 +84,61 @@ export default {
   },
   clearAll (context, payload) {
     context.commit(CLEAR_ALL)
+  },
+  login ({ commit }, payload) {
+    console.log('Actions login()')
+    // security/SecurityConstants를 확인하면 api 어디로 보내는지 알 수 있음.
+    // 인증 요청 들어온 것을 Post로 보냈음.
+    // 요청이
+    return axios.post(`http://localhost:7777/api/authenticate?username=${payload.userid}&password=${payload.password}`, {
+      username: payload.userid,
+      password: payload.password
+    }).then(res => {
+      console.log('Actions ater post')
+      const { authorization } = res.headers
+      const accessToken = authorization.substring(7)
+      console.log('Access Token: ', accessToken)
+
+      commit(SET_ACCESS_TOKEN, accessToken)
+
+      return axios.get('http://localhost:7777/users/myinfo')
+    // 잘 요청이 오면 data로 보내주세요.
+    }).then(res => {
+      console.log('After Get Auth Info')
+      commit(SET_MY_INFO, res.data)
+    })
+  },
+  loginByToken ({ commit }, token) {
+    commit(SET_ACCESS_TOKEN, token)
+    return axios.get('http://localhost:7777/users/myinfo')
+      .then(res => {
+        commit(SET_MY_INFO, res.data)
+      })
+  },
+  logout ({ commit }) {
+    commit(DESTROY_MY_INFO)
+    commit(DESTROY_ACCESS_TOKEN)
   }
 }
+// actions: {
+//  generateRandomNumber ({ commit }) {
+//    console.log(commit)
+//
+//    axios.get('http://localhost:7777/random')
+//      .then((res) => {
+//        commit('successGenRandNum',
+//          parseInt(res.data.randNumber))
+//      })
+//      .catch((res) => {
+//        commit('failGenRandNum', res)
+//      })
+//  },
+//  addTodo (context, payload) {
+//    context.commit('ADD_TODO', payload)
+//  },
+//  removeTodo (context, payload) {
+//    context.commit('REMOVE_TODO', payload)
+//  },
+//  clearAll (context, payload) {
+//    context.commit('CLEAR_ALL')
+//  }
