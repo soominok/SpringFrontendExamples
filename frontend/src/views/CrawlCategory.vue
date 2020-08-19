@@ -1,6 +1,8 @@
 <template>
   <Layout>
     <template #menubar>
+      <!-- v-btn은 버튼을 주는 것.
+           padding, width로 간격을 정해줬음. -->
       <v-btn @click="start('society')" text color="black"
         style="padding: 10px; width: 90px;">사회</v-btn>
       <v-btn @click="start('politics')" text color="black"
@@ -25,6 +27,7 @@
             </tr>
           </thead>
           <tbody>
+            <!-- 크롤링해서 얻어온 정보를 list로 No와 title을 뿌려주는 것 -->
             <tr v-for="list of lists" :key="list.title">
               <td style="color: gray">{{ list.newsNo }}</td>
               <!-- a 태그 걸었으니까 뉴스 템플릿 쓸 수 있는 것 (링크 연결 가능) -->
