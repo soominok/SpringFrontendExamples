@@ -37,7 +37,7 @@ export default {
         console.log(res)
         this.pageArray = res.data
       })
-      .catcho(err => {
+      .catch(err => {
         console.log(err)
       })
   }

@@ -117,7 +117,7 @@ export default {
       username: payload.userid,
       password: payload.password
     }).then(res => {
-      console.log('Actions ater post')
+      console.log('Actions after post')
       const { authorization } = res.headers
       const accessToken = authorization.substring(7)
       console.log('Access Token: ', accessToken)

@@ -21,7 +21,7 @@
         @click="prevPage" class="page-btn">
         이전
       </button>
-      // computed 계산식에 의해서 진행 됨!
+      <!-- computed 계산식에 의해서 진행 됨! -->
       <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
       <button :disabled="pageNum >= pageCount - 1"
         @click="nextPage" class="page-btn">
