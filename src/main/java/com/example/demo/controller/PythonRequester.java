@@ -65,8 +65,5 @@ public class PythonRequester {
 // 2020-07-03 16:26:59.610  INFO 29502 --- [nio-8080-exec-4] c.e.demo.controller.PythonRequester      : doRequestPythonRest()
 // 이것으로 들어온 것이 확인 됨.
 
-
-
-
     }
 }
